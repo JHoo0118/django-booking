@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {{room.name}}의 사진
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <div class="container mx-auto my-10 flex flex-col">
+
+        <div class="my-10 w-full flex justify-end">
+            <div class="flex flex-col items-center justify-center px-6"><a href="{% url 'rooms:add-photo' room.pk %}" class=" w-1/6 block"><i class="fa fa-camera fa-3x hover:text-black"></i></a></div>
+        </div>
+
+        {% for photo in room.photos.all  %}
+            <div class="mb-5 border p-6 border-gray-400 flex justify-between">
+                <div class="flex items-start">
+                    <img src="{{photo.file.url}}" class="w-32 h-32" />
+                    <span class="ml-5 text-xl">{{photo.caption}}</span>
+                </div>
+                <div class="flex flex-col w-1/5">
+                    <a class="btn-link mb-5 bg-teal-500" href="{% url 'rooms:edit-photo' room.pk photo.pk %}">수정하기</a>
+                    <a class="btn-link bg-red-600" href="{% url 'rooms:delete-photo' room.pk photo.pk %}">삭제하기</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="flex justify-center mt-5">
+            <a href="{% url 'rooms:edit' room.pk %}" class="text-indigo-600 font-semibold text-xl">숙소 수정화면</a>
+        </div>
+
+    </div>
+{% endblock content %} 

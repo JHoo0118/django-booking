@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block page_title %}
+    검색
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+    
+<div class="container xl:w-2/5 lg:w-8/12 md:w-2/3 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
+
+    <form method="get" action="{% url 'rooms:search' %}" class="w-full" >
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <span class="text-red-700 font-medium text-sm">{{error}}</span> 
+            {% endfor %}
+        {% endif %}
+    
+        {% for field in form %}
+            <span class="font-semibold">
+            {% if field == form.country %}
+                {% trans "국가" %}
+            {% else %}
+                {{field.label}}
+            {% endif %}
+                 </span>
+            <div class="input-box w-full 
+                {% if field == form.instant_book or field == form.superhost %}
+                    border-0
+                {% endif %}
+                {% if field.errors %}
+                    has_error
+                {% endif %}">
+                {% if field == form.instant_book %}
+                    <input class="input-check" type="checkbox" name="instant_book" id="id_instant_book">
+                    <label for="id_instant_book">
+                        <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                    </label>
+                {% elif field == form.superhost %}
+                    <input class="input-check" type="checkbox" name="superhost" id="id_superhost">
+                    <label for="id_superhost">
+                        <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                    </label>
+                {% elif field == form.amenities %}
+                    <div id="id_amenities" class="w-full grid grid-cols-2 flex justify-around">
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="14" id="id_amenities_0">
+                            <label for="id_amenities_0">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_0" class="ml-4 unselectable">TV</label>
+                        </div>
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="6" id="id_amenities_1">
+                            <label for="id_amenities_1">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_1" class="ml-4 unselectable">건조기</label>
+                        </div>
+                        
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="3" id="id_amenities_2">
+                            <label for="id_amenities_2">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_2" class="ml-4 unselectable">난방</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="13" id="id_amenities_3">
+                            <label for="id_amenities_3">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_3" class="ml-4 unselectable">노트북 작업 공간</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="11" id="id_amenities_4">
+                            <label for="id_amenities_4">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_4" class="ml-4 unselectable">다리미</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="7" id="id_amenities_5">
+                            <label for="id_amenities_5">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_5" class="ml-4 unselectable">무선 인터넷</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="2" id="id_amenities_6">
+                            <label for="id_amenities_6">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_6" class="ml-4 unselectable">샴푸</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="5" id="id_amenities_7">
+                            <label for="id_amenities_7">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_7" class="ml-4 unselectable">세탁기</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="17" id="id_amenities_8">
+                            <label for="id_amenities_8">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_8" class="ml-4 unselectable">셀프 체크인</label>
+                        </div>
+
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="22" id="id_amenities_9">
+                            <label for="id_amenities_9">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_9" class="ml-4 unselectable">수변</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="23" id="id_amenities_10">
+                            <label for="id_amenities_10">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_10" class="ml-4 unselectable">스키를 탄 채로 출입 가능</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="9" id="id_amenities_11">
+                            <label for="id_amenities_11">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_11" class="ml-4 unselectable">실내 벽난로</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="15" id="id_amenities_12">
+                            <label for="id_amenities_12">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_12" class="ml-4 unselectable">아기 침대</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="8" id="id_amenities_13">
+                            <label for="id_amenities_13">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_13" class="ml-4 unselectable">아침식사</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="4" id="id_amenities_14">
+                            <label for="id_amenities_14">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_14" class="ml-4 unselectable">에어컨</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="10" id="id_amenities_15">
+                            <label for="id_amenities_15">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_15" class="ml-4 unselectable">옷걸이</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="20" id="id_amenities_16">
+                            <label for="id_amenities_16">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_16" class="ml-4 unselectable">욕실 단독 사용</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="16" id="id_amenities_17">
+                            <label for="id_amenities_17">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_17" class="ml-4 unselectable">유아용 식탁의자</label>
+                        </div>
+                        
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="19" id="id_amenities_18">
+                            <label for="id_amenities_18">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_18" class="ml-4 unselectable">일산화탄소 경보기</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="1" id="id_amenities_19">
+                            <label for="id_amenities_19">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_19" class="ml-4 unselectable">주방</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="21" id="id_amenities_20">
+                            <label for="id_amenities_20">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_20" class="ml-4 unselectable">해변과 인접</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="12" id="id_amenities_21">
+                            <label for="id_amenities_21">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_21" class="ml-4 unselectable">헤어드라이어</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="amenities" value="18" id="id_amenities_22">
+                            <label for="id_amenities_22">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_amenities_22" class="ml-4 unselectable">화재경보기</label>
+                        </div>
+                    </div>
+                {% elif field == form.facilities %}
+                    <div id="id_facilities" class="w-full grid grid-cols-2 flex justify-around">
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="facilities" value="1" id="id_facilities_0">
+                            <label for="id_facilities_0">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_facilities_0" class="ml-4 unselectable">건물 내 무료 주차</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="facilities" value="4" id="id_facilities_1">
+                            <label for="id_facilities_1">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_facilities_1" class="ml-4 unselectable">수영장</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="facilities" value="3" id="id_facilities_2">
+                            <label for="id_facilities_2">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_facilities_2" class="ml-4 unselectable">자쿠지</label>
+                        </div>
+
+                        <div class="flex items-center w-full col-span-1 ml-4 my-4">
+                            <input class="input-check" type="checkbox" name="facilities" value="2" id="id_facilities_3">
+                            <label for="id_facilities_3">
+                                <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+                            </label>
+                            <label for="id_facilities_3" class="ml-4 unselectable">헬스장</label>
+                        </div>
+                    </div>
+                {% else %}
+                    {{field}}
+                {% endif%}
+                
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <span class="text-red-700 font-medium text-sm">{{error}}</span> 
+                    {% endfor %}
+                {% endif %}
+            </div> 
+        {% endfor %}
+    
+        <button class="btn bg-indigo-600 text-white mt-3">검색</button>
+    </form>
+    
+</div>
+
+    <div class="container xl:w-3/5 lg:w-2/3 md:w-3/4 mx-auto my-10 flex flex-col p-6 min-h-75vh">
+        <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "검색 결과" %}</h3>
+        <div class="grid grid-cols-12 gap-5">
+            {% for room in rooms %}
+                {% include "mixins/room_card.html" with room=room %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

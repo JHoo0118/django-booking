@@ -1,0 +1,24 @@
+{% load i18n %}
+<div class="w-full col-span-12 xl:col-span-3 lg:col-span-4 md:col-span-6 sm:col-span-12 mb-10">
+  <a href="{% url 'rooms:detail' room.pk %}" >
+    <div
+      class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
+      style="background-image: url({{room.get_first_photo}})"
+    ></div>
+    <div class="flex justify-between mb-2">
+      <div class="overflow-text">
+          {% if room.host.superhost %}
+              <span class="mr-px uppercase font-medium text-xs border border-black text-black rounded py-px px-1">{% trans '슈퍼호스트' %}</span>
+          {% endif %}
+              
+          <span class="text-sm text-gray-600">{{room.city}} {{room.country.name}}</span>
+      </div>
+      {% if room.reviews.count != 0 %}
+      <span class="text-sm flex items-center">
+        <i class="fas fa-star text-red-500 text-xs mr-1"></i> {{room.total_rating}}
+      </span>
+      {% endif %}
+    </div>
+    <span class="overflow-text text-black">{{room.name}}</span>
+  </a>
+</div>

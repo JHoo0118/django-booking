@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load on_favs i18n check_day_change %}
+
+{% block page_title %}
+    Conversation
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <div class="min-h-75vh mx-5 xl:mx-0 lg:mx-0 md:mx-5 sm:mx-5">
+        <div class="container mx-auto my-10 mt-32 min-h-50vh flex flex-col xl:flex-row lg:flex-row md:flex-col sm:flex-col">
+            <div class="border p-10 col-span-4 w-full xl:w-1/4 lg:w-2/5 md:w-full sm:w-full">
+                <span class="text-center w-full block text-lg font-medium">{% trans '채팅 참여자' %}</span>
+                <div class="flex justify-between mt-10 items-center">
+                    {% for user in conversation.participants.all %}
+                        <div class="flex flex-col items-center">
+                            {% include "mixins/user_avatar.html" with user=user %}
+                            <span class="mt-2 text-gray-500">{{user.first_name}}</span>
+                        </div>
+                        {% if forloop.first %}
+                        <div class="font-medium text-2xl flex pb-8"><i class="fas fa-check-circle text-green-500 self-center"></i></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="flex-grow border mx-0 mt-10 xl:mx-12 xl:mt-0 lg:mx-12 lg:mt-0 md:mx-0 md:mt-10 sm:mx-0 sm:mt-10 bg-gray-100">
+                <div class="p-10 flex flex-col min-h-50vh w-full">
+                    {% if conversation.messages.count == 0 %}
+                        {% trans '메세지가 없습니다' %}.
+                    {% else %}
+                        
+                        {% if conversation.messages.count >= 1 %}
+                            <div class="flex items-center w-full my-5">
+                                <div class="h-px w-full bg-gray-400"></div>
+                                <span class="text-gray-600 font-medium w-80 text-sm text-center">{{conversation.get_first_message_date|date:'Y년 n월 j일'}}</span>
+                                <div class="h-px w-full bg-gray-400"></div>
+                            </div>
+                        {% endif %}
+                        
+                        {% for message in conversation.messages.all %}
+                            
+                        
+                            <div class="mb-4 {% if message.user.pk == user.pk %}
+                                self-end
+                                text-right
+                            {% endif %}">
+                            
+                                <span class="text-sm font-medium text-gray-600">
+                                    {% if message.user.pk == user.pk %}
+                                    {% else %}
+                                        {{message.user.first_name}}
+                                    {% endif %}
+                                </span>
+                                <div class="flex items-end">
+                                    
+                                    {% if message.user.pk == user.pk %}
+                                        <span class="text-sm text-gray-600 mr-2">{{message.created|date:'A g시 i분'}}</span>
+                                    {% endif %}
+                                    <div class="mt-px p-5 w-56 rounded
+                                        {% if message.user.pk != user.pk %}
+                                            bg-white
+                                            text-black
+                                        {% else %}
+                                            bg-yellow-300
+                                        {% endif %}
+                                    ">
+                                        {{message.message}}
+                                    </div>
+                                    
+                                    {% if message.user.pk != user.pk %}
+                                        <span class="ml-2 text-sm text-gray-600">{{message.created|date:'A g시 i분'}}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% check_day_change conversation.get_last_message_date|date:'j' conversation.get_reverse_second_message_date|date:'j' as check_day_change %}
+                            
+                                
+                        {% endfor %}
+                        {% if conversation.messages.count >= 2 and check_day_change %}
+                            <div class="flex items-center w-full my-5">
+                                <div class="h-px w-full bg-gray-400"></div>
+                                <span class="text-gray-600 font-medium w-80 text-sm text-center">{{conversation.get_last_message_date|date:'Y년 n월 j일'}}</span>
+                                <div class="h-px w-full bg-gray-400"></div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                
+                <form class="w-full mx-auto border-t" method="POST">
+                    {% csrf_token %}
+                    <input class="border-box" name="message" placeholder="{% trans '메세지를 입력하세요.' %}" autocomplete="off" required />
+                    <button class="btn-link rounded-none">{% trans '보내기' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %} 

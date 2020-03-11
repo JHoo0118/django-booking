@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load i18n get_guest_reservation get_reservation_false get_in_progress %}
+{% block page_title %}
+    {{user.first_name}}의 예약한 숙소
+{% endblock page_title %}
+
+{% block content %}
+        
+        <div class="container xl:w-3/5 lg:w-2/3 md:w-3/4 mx-auto my-10 flex flex-col p-6 min-h-75vh">
+
+            {% get_guest_reservation user as guset_reservations %}
+
+            <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "내 숙소 예약 관리" %}</h3>
+            
+            <div class="grid grid-cols-12 gap-5">
+                
+                {% if guset_reservations == "-1" %}
+                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                {% else %}
+                    {% for reservation in guset_reservations %}
+                        {% if reservation.is_finished %}
+
+                        {% else %}
+
+                            {% if reservation.status != 'canceled' and reservation.is_finished == False %}
+                            
+                            <div class="w-full col-span-12 xl:col-span-3 lg:col-span-4 md:col-span-6 sm:col-span-12 mb-10 
+                                    
+                                    ">
+                                <a href="{% url 'reservations:detail' reservation.pk %}" >
+                                    <div
+                                    class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
+                                    style="background-image: url({{reservation.room.get_first_photo}})"
+                                    ></div>
+                                    <div class="flex justify-between mb-2">
+                                    <div class="overflow-text">
+                                        {% if reservation.room.host.superhost %}
+                                            <span class="mr-px uppercase font-medium text-xs border border-black text-black rounded py-px px-1">{% trans '슈퍼호스트' %}</span>
+                                        {% endif %}
+                                            
+                                        <span class="text-sm text-gray-600">{{reservation.room.city}} {{reservation.room.country.name}}</span>
+                                    </div>
+                                    {% if reservation.room.reviews.count != 0 %}
+                                        <span class="text-sm flex items-center">
+                                            <i class="fas fa-star text-red-500 text-xs mr-1"></i> {{reservation.room.total_rating}}
+                                        </span>
+                                    {% endif %}
+                                    </div>
+                                    <a href="{% url 'reservations:detail' reservation.pk %}">{{reservation}}</a>
+                                </a>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            
+            {% get_reservation_false user.reservations.all as get_reservation_false %}
+
+            <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "예약한 숙소" %}</h3>
+            <div class="grid grid-cols-12 gap-5">
+
+                {% if get_reservation_false %}
+                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                
+                {% else %}
+                    
+
+                {% for reservation in user.reservations.all %}
+                    {% if reservation.is_finished %}
+
+                    {% else %}
+
+
+                        {% if reservation.status != 'canceled' and reservation.is_finished == False %}
+                            
+                            <div class="w-full col-span-12 xl:col-span-3 lg:col-span-4 md:col-span-6 sm:col-span-12 mb-10 
+                                    
+                                    ">
+                                <a href="{% url 'reservations:detail' reservation.pk %}" >
+                                    <div
+                                    class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
+                                    style="background-image: url({{reservation.room.get_first_photo}})"
+                                    ></div>
+                                    <div class="flex justify-between mb-2">
+                                    <div class="overflow-text">
+                                        {% if reservation.room.host.superhost %}
+                                            <span class="mr-px uppercase font-medium text-xs border border-black text-black rounded py-px px-1">{% trans '슈퍼호스트' %}</span>
+                                        {% endif %}
+                                            
+                                        <span class="text-sm text-gray-600">{{reservation.room.city}} {{reservation.room.country.name}}</span>
+                                    </div>
+                                    {% if reservation.room.reviews.count != 0 %}
+                                        <span class="text-sm flex items-center">
+                                            <i class="fas fa-star text-red-500 text-xs mr-1"></i> {{reservation.room.total_rating}}
+                                        </span>
+                                    {% endif %}
+                                    </div>
+                                    <a href="{% url 'reservations:detail' reservation.pk %}">{{reservation}}</a>
+                                </a>
+                            </div>
+                            
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+            
+            
+            
+            {% get_in_progress user.reservations.all as get_in_progress %}
+
+            <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "과거에 예약한 숙소" %}</h3>
+            <div class="grid grid-cols-12 gap-5">
+
+                {% if get_reservation_false or get_in_progress %}
+                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                {% else %}
+
+                {% for reservation in user.reservations.all %}
+                    {% if reservation.is_finished %}
+                        <div class="w-full col-span-12 xl:col-span-3 lg:col-span-4 md:col-span-6 sm:col-span-12 mb-10 opacity-50 
+                                
+                                ">
+                            <a href="{% url 'reservations:detail' reservation.pk %}" >
+                                <div
+                                class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
+                                style="background-image: url({{reservation.room.get_first_photo}})"
+                                ></div>
+                                <div class="flex justify-between mb-2">
+                                <div class="overflow-text">
+                                    {% if reservation.room.host.superhost %}
+                                        <span class="mr-px uppercase font-medium text-xs border border-black text-black rounded py-px px-1">{% trans '슈퍼호스트' %}</span>
+                                    {% endif %}
+                                        
+                                    <span class="text-sm text-gray-600">{{reservation.room.city}} {{reservation.room.country.name}}</span>
+                                </div>
+                                {% if reservation.room.reviews.count != 0 %}
+                                    <span class="text-sm flex items-center">
+                                        <i class="fas fa-star text-red-500 text-xs mr-1"></i> {{reservation.room.total_rating}}
+                                    </span>
+                                {% endif %}
+                                </div>
+                                <a href="{% url 'reservations:detail' reservation.pk %}">{{reservation}}</a>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock content %} 

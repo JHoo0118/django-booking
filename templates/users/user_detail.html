@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block page_title %}
+    {% trans '프로필' %}
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="container xl:w-3/5 lg:w-2/3 md:w-3/4 mx-auto my-10 flex flex-col p-6 min-h-75vh">
+        <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "프로필" %}</h3>
+        <div class="grid grid-cols-5 grid-row-7 border-t border-b border-gray-400 h-35vh w-full">
+            <div class="col-span-1 row-span-3 pl-2 text-gray-600 bg-gray-100 border-b border-r border-gray-400 flex items-center font-semibold">{% trans "프로필 사진" %}</div>
+            <div class="col-span-4 row-span-3 pl-2 text-gray-800 text-sm border-b border-gray-400 flex items-center">
+                {% if user_obj.avatar %}
+                    <div class="h-24 w-24 xl:h-32 xl:w-32 lg:h-32 lg:w-32 md: h-24 md:w-24 sm:w-24 sm:h-24" ><img src="{{user.avatar.url}}" class="h-24 w-24 xl:h-32 xl:w-32 lg:h-32 lg:w-32 md: h-24 md:w-24 sm:w-24 sm:h-24 bg-cover rounded-full" /></div>
+                {% else %}
+                    <div class="h-24 w-24 xl:h-32 xl:w-32 lg:h-32 lg:w-32 md: h-24 md:w-24 sm:w-24 sm:h-24 bg-indigo-600 rounded-full text-white flex justify-center items-center overflow-hidden">
+                        <span class="{{text|default:'text-3xl'}}">{{user.first_name|first}}</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-span-1 row-span-1 pl-2 text-gray-600 bg-gray-100 border-gray-400 border-b border-r flex items-center font-semibold">{% trans "이름" %}</div>
+            <div class="col-span-4 row-span-1 pl-2 text-gray-800 border-b text-sm flex border-gray-400 items-center">
+                {{user_obj.first_name}}
+                {% if user_obj.superhost %}
+                    <i class="fas fa-star text-red-500 ml-1"></i>
+                {% endif %}
+            </div>
+            <div class="col-span-1 row-span-3 pl-2 text-gray-600 bg-gray-100 border-r border-gray-400 flex items-center font-semibold">{% trans "소개" %}</div>
+            <div class="col-span-4 row-span-3 pl-2 flex items-center">{{user_obj.bio}}</div>
+        </div>
+        <div class="flex">
+            <div class="w-64 mx-auto py-5 flex justify-end">
+                <div class="flex flex-col justify-center items-center"><a href="{% url 'lists:see-favs' %}" class="icon-ani"><i class="fa fa-heart text-red-600 fa-3x mb-5 icon-ani hover:text-red-700"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "마음에 든 숙소" %}</span></div>
+            </div>
+            <div class="w-64 mx-auto py-5 flex justify-center">
+                <div class="flex flex-col justify-center items-center"><a href="{% url 'reservations:see-reservation' %}" class="icon-ani"><i class="fa fa-book text-naver fa-3x mb-5 icon-ani hover:text-green-600"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "숙소 예약 관리" %}</span></div>
+            </div>
+            {% if user == user_obj %}
+            <div class="w-64 mx-auto py-5 flex justify-start">
+                <div class="flex flex-col justify-center items-center"><a href="{% url 'users:update' %}" class="icon-ani"><i class="fa fa-user-edit text-gray-800 fa-3x mb-5 icon-ani hover:text-black"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "프로필 수정" %}</span></div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    {% if user_obj.rooms.count > 0 %}
+        <div class="container xl:w-3/5 lg:w-2/3 md:w-3/4 mx-auto my-10 flex flex-col p-6 min-h-75vh">
+            <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{{user_obj.first_name}}{% trans "의 숙소" %}</h3>
+            <div class="grid grid-cols-12 gap-5">
+                {% for room in user_obj.rooms.all %}
+                    {% include "mixins/room_card.html" with room=room %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %} 

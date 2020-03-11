@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block page_title %}
+    {{reservation.check_in}} 예약
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+<div class="py-20">
+    <div class="grid grid-cols-3 grid-rows-2 grid-flow-col container xl:w-9/12 mx-auto rounded-t-lg h-full xl:h-60vh lg:h-60vh md: h-85vh sm:h-full mb-48">
+        <div class="w-full h-full col-span-3 row-span-1 xl:col-span-2 xl:row-span-2 lg:col-span-2 lg:row-span-2 md: col-span-3 md:row-span-1 sm:col-span-3 sm:row-span-1">
+            <div class="bg-cover bg-center h-full" style="background-image: url({{reservation.room.get_first_photo}});"></div>
+        </div>
+        
+        
+        <div class="col-span-3 row-span-1 xl:row-span-2 lg:row-span-2 md:row-span-1 sm:row-span-1 xl:col-span-1 lg:col-span-2 md: col-span-3 sm:col-span-3 flex flex-col items-start border-l border-t">
+            <div class="font-semibold border-b py-8 px-5 w-full border-r">
+                예약 날짜: <span class="text-sm text-gray-600">{{reservation.check_in|date:'Y년 n월 d일'}} - {{reservation.check_out|date:'Y년 n월 d일'}}</span><span class="ml-5 {% if reservation.status == 'pending' %} text-yellow-500 {% elif reservation.status == 'canceled' %} text-red-600 {% else %} text-teal-600 {% endif %}">{{reservation.get_status_display}}{% if reservation.status == 'pending' and reservation.get_now > reservation.check_in %}<i class="fa fa-exclamation text-red-500 ml-1"></i>{% endif %}</span>
+            </div>
+
+            <span class="text-2xl border-b border-r p-5 w-full">
+                {{reservation.room.name}}
+            </span>
+
+            <div class="flex flex-col justify-between p-5 border-b h-full border-r w-full">
+                <div class="flex">
+                    <div class="flex flex-col items-center">
+                        {% include "mixins/user_avatar.html" with user=reservation.room.host %}
+                        <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
+                    </div>
+                    <div class="ml-5 flex flex-col">
+                        
+                        {% if reservation.room.host == user %}
+                        <span class="font-medium mb-px">게스트에게 연락하기</span>
+                        {% else %}
+                        <span class="font-medium mb-px">호스트에게 연락하기</span>
+                        {% endif %}
+                        <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="font-medium text-indigo-600">메세지 보내기</a>
+                    </div>
+                </div>
+                
+                
+                {% if reservation.status != 'canceled' %}
+                    {% if reservation.status == 'confirmed' and reservation.is_finished %}
+                    
+                    {% else %}
+                        <div class="flex self-end">
+                            {% if reservation.status == 'pending' %}
+                                {% if reservation.room.host == user %}
+                                    <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mx-3">예약 확정</a>
+                                {% else %}
+                                    {% if reservation.get_now < reservation.check_in %}
+                                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link bg-red-500 block px-3">예약 취소</a>
+                                    {% endif %}
+                                {% endif %}
+                                
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                        
+                {% endif %}
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="container mx-auto">
+    {% if reservation.status != 'canceled' %}
+        {% if reservation.status == 'confirmed' and reservation.is_finished %}
+        <span class="font-medium text-2xl text-center w-full block mb-5">후기 작성</span>
+        <form action="{% url 'reviews:create' reservation.room.pk %}" method="POST" class="w-1/2 mx-auto">
+            {% csrf_token %}
+            
+            {{form.review.label}}
+            <div class="input-box">
+                {{form.review}}
+            </div>
+                <div class="flex justify-around">
+                        
+                    <div class="w-full mr-2">
+                        <div>
+                            <span>{% trans "정확성" %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="accuracy" required="" id="id_accuracy">
+                            </div>
+                        </div>
+                            
+                        <div>
+                            <span>{% trans "의사소통" %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="communication" required="" id="id_communication">
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <span>{% trans "청결도" %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="cleanliness" required="" id="id_cleanliness">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full ml-2">
+                        <div>
+                            <span>{% trans "위치" %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="location" required="" id="id_location">
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <span>{% trans '체크인' %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="check_in" required="" id="id_check_in">
+                            </div>
+                        </div>
+
+                        <div>
+                            <span>{% trans '가치' %}</span>
+                            <div class="input-box col-span-2">
+                                <input type="number" min="1" max="5" name="value" required="" id="id_value">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <button class="btn-link mt-5">후기 작성 완료</button>
+        </form>
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+{% endblock content %} 

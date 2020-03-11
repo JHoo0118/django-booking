@@ -1,0 +1,41 @@
+{% load i18n %}
+
+<div class="border-t max-w-full xl: mt-20 lg: mt-10 md: mt-4 sm: mt-0"></div>
+<footer class="container xl:max-w-5xl mx-auto lg: max-w-5xl mx-auto py-8 font-medium text-gray-700 text-sm">
+  <div class="grid grid-cols-12 gap-5">
+    <div class="xl:col-span-3 lg:col-span-3 mb-10 w-full">
+      <div class="mb-4"><span class="font-semibold">{% trans "Booking" %}</span></div>
+      <div>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '채용정보' %} </a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '뉴스' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '정책' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '다양성과 소속감' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '접근성' %}</a>
+      </div>
+    </div>
+    <div class="xl:col-span-3 lg:col-span-3 mb-10 w-full">
+      <div class="mb-4"><span class="font-semibold">{% trans '여행하기' %}</span></div>
+      <div>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '신뢰와 안전' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '여행 크레딧' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '비즈니스 프로그램' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '즐길거리' %}</a>
+      </div>
+    </div>
+    <div class="xl:col-span-3 lg:col-span-3 mb-10 w-full">
+      <div class="mb-4"><span class="font-semibold">{% trans '호스팅하기' %}</span></div>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '호스팅의 장점' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '호스트 추천하기' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '호스팅 기준' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '책임감 있는 호스팅 하기' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '커뮤니티 센터' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '체험 호스팅' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans 'Open Homes 프로그램' %}</a>
+      </div>
+    <div class="xl:col-span-3 lg:col-span-3 mb-10 w-full">
+      <div class="mb-4"><span class="font-semibold">{% trans '고객지원' %}</span></div>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '도움말' %}</a>
+        <a class="block hover:underline" href="{% url 'core:home' %}">{% trans '정이웃 민원 지원' %}</a>
+      </div>
+    </div>
+</footer>

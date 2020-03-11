@@ -1,0 +1,495 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-12 03:37+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\config\settings.py:157
+msgid "Korean"
+msgstr "한국어"
+
+#: .\config\settings.py:158
+msgid "English"
+msgstr "영어"
+
+#: .\conversations\forms.py:8
+msgid "메세지 입력"
+msgstr "Message"
+
+#: .\reviews\views.py:19
+msgid "후기가 등록되었습니다."
+msgstr "Room reviewed"
+
+#: .\rooms\forms.py:8 .\rooms\models.py:88
+msgid "도시"
+msgstr "City"
+
+#: .\rooms\forms.py:10 .\rooms\models.py:89
+msgid "가격"
+msgstr "Price"
+
+#: .\rooms\forms.py:12 .\rooms\models.py:30 .\rooms\models.py:31
+msgid "숙소 유형"
+msgstr "Room Type"
+
+#: .\rooms\forms.py:18 .\rooms\models.py:92
+msgid "게스트"
+msgstr "Guests"
+
+#: .\rooms\forms.py:21 .\rooms\models.py:100
+msgid "침실"
+msgstr "Bedrooms"
+
+#: .\rooms\forms.py:23 .\rooms\models.py:97
+msgid "침대"
+msgstr "Beds"
+
+#: .\rooms\forms.py:24 .\rooms\models.py:103
+msgid "욕실"
+msgstr "Baths"
+
+#: .\rooms\forms.py:25 .\rooms\models.py:107
+msgid "즉시예약"
+msgstr "Instant book"
+
+#: .\rooms\forms.py:26 .\templates\mixins\room_card.html:11
+#: .\templates\reservations\reservation_list.html:38
+#: .\templates\reservations\reservation_list.html:80
+#: .\templates\reservations\reservation_list.html:116 .\users\models.py:68
+msgid "슈퍼호스트"
+msgstr "SUPERHOST"
+
+#: .\rooms\forms.py:28 .\rooms\models.py:40 .\rooms\models.py:41
+msgid "편의시설"
+msgstr "Amenities"
+
+#: .\rooms\forms.py:34 .\rooms\models.py:50 .\rooms\models.py:51
+msgid "시설"
+msgstr "Facilities"
+
+#: .\rooms\models.py:60 .\rooms\models.py:61
+msgid "숙소 이용규칙"
+msgstr "House Rules"
+
+#: .\rooms\models.py:69 .\rooms\models.py:86
+msgid "설명"
+msgstr "Description"
+
+#: .\rooms\models.py:70
+msgid "이미지"
+msgstr "Image"
+
+#: .\rooms\models.py:77 .\rooms\models.py:78
+msgid "사진"
+msgstr "Image"
+
+#: .\rooms\models.py:85
+msgid "숙소명"
+msgstr "Host a home"
+
+#: .\rooms\models.py:87 .\templates\rooms\room_search.html:24
+msgid "국가"
+msgstr "Country"
+
+#: .\rooms\models.py:90
+msgid "주소"
+msgstr "Address"
+
+#: .\rooms\models.py:105 .\templates\reservations\reservation_detail.html:116
+msgid "체크인"
+msgstr "Check in"
+
+#: .\rooms\models.py:106
+msgid "체크아웃"
+msgstr "Check out"
+
+#: .\templates\base.html:27
+msgid "모든 위치 검색"
+msgstr "Anywhere"
+
+#: .\templates\base.html:40
+msgid "이용약관"
+msgstr "Terms"
+
+#: .\templates\base.html:40
+msgid "개인정보 처리방침"
+msgstr "Privacy"
+
+#: .\templates\base.html:40
+msgid "여행지 찾기"
+msgstr "Site Map"
+
+#: .\templates\conversations\conversation_detail.html:16
+msgid "채팅 참여자"
+msgstr "Participants"
+
+#: .\templates\conversations\conversation_detail.html:32
+msgid "메세지가 없습니다"
+msgstr "No Messages"
+
+#: .\templates\conversations\conversation_detail.html:94
+msgid "메세지를 입력하세요."
+msgstr "Message"
+
+#: .\templates\conversations\conversation_detail.html:95
+msgid "보내기"
+msgstr "Send"
+
+#: .\templates\lists\list_detail.html:10 .\templates\users\user_detail.html:34
+msgid "마음에 든 숙소"
+msgstr "Favorite Rooms"
+
+#: .\templates\mixins\auth\form_input.html:18
+msgid "사진 없음"
+msgstr "Clear"
+
+#: .\templates\partials\footer.html:7
+msgid "Booking"
+msgstr "Booking"
+
+#: .\templates\partials\footer.html:9
+msgid "채용정보"
+msgstr "Careers"
+
+#: .\templates\partials\footer.html:10
+msgid "뉴스"
+msgstr "News"
+
+#: .\templates\partials\footer.html:11
+msgid "정책"
+msgstr "Policies"
+
+#: .\templates\partials\footer.html:12
+msgid "다양성과 소속감"
+msgstr "Diversity & Belonging"
+
+#: .\templates\partials\footer.html:13
+msgid "접근성"
+msgstr "Accessibility"
+
+#: .\templates\partials\footer.html:17
+msgid "여행하기"
+msgstr "Discover"
+
+#: .\templates\partials\footer.html:19
+msgid "신뢰와 안전"
+msgstr "Trust & Safety"
+
+#: .\templates\partials\footer.html:20
+msgid "여행 크레딧"
+msgstr "Travel Credit"
+
+#: .\templates\partials\footer.html:21
+msgid "비즈니스 프로그램"
+msgstr "Business Travel"
+
+#: .\templates\partials\footer.html:22
+msgid "즐길거리"
+msgstr "Things To Do"
+
+#: .\templates\partials\footer.html:26
+msgid "호스팅하기"
+msgstr "Hosting"
+
+#: .\templates\partials\footer.html:27
+msgid "호스팅의 장점"
+msgstr "Why Host"
+
+#: .\templates\partials\footer.html:28
+msgid "호스트 추천하기"
+msgstr "Refer Hosts"
+
+#: .\templates\partials\footer.html:29
+msgid "호스팅 기준"
+msgstr "Hospitality"
+
+#: .\templates\partials\footer.html:30
+msgid "책임감 있는 호스팅 하기"
+msgstr "Responsible Hosting"
+
+#: .\templates\partials\footer.html:31
+msgid "커뮤니티 센터"
+msgstr "Community Center"
+
+#: .\templates\partials\footer.html:32
+msgid "체험 호스팅"
+msgstr "Host an Experience"
+
+#: .\templates\partials\footer.html:33
+msgid "Open Homes 프로그램"
+msgstr "Open Homes"
+
+#: .\templates\partials\footer.html:36
+msgid "고객지원"
+msgstr "Support"
+
+#: .\templates\partials\footer.html:37
+msgid "도움말"
+msgstr "Help"
+
+#: .\templates\partials\footer.html:38
+msgid "정이웃 민원 지원"
+msgstr "Neighborhood Support"
+
+#: .\templates\partials\nav.html:10 .\users\models.py:30
+msgid "한국어"
+msgstr "Korean"
+
+#: .\templates\partials\nav.html:14 .\users\models.py:30
+msgid "영어"
+msgstr "English"
+
+#: .\templates\partials\nav.html:19
+msgid "숙소 등록"
+msgstr "Host a home"
+
+#: .\templates\partials\nav.html:20 .\templates\users\user_detail.html:4
+#: .\templates\users\user_detail.html:10
+msgid "프로필"
+msgstr "Profile"
+
+#: .\templates\partials\nav.html:21
+msgid "로그아웃"
+msgstr "Log out"
+
+#: .\templates\partials\nav.html:23 .\templates\users\login.html:4
+#: .\templates\users\login.html:32 .\templates\users\signup.html:29
+msgid "로그인"
+msgstr "Log in"
+
+#: .\templates\partials\nav.html:24 .\templates\users\login.html:37
+#: .\templates\users\signup.html:4 .\templates\users\signup.html:24
+msgid "회원가입"
+msgstr "Sign up"
+
+#: .\templates\partials\social_login.html:5
+msgid "네이버로 로그인"
+msgstr "Log in with Naver"
+
+#: .\templates\partials\social_login.html:9
+msgid "카카오로 로그인"
+msgstr "Log in with Kakao"
+
+#: .\templates\partials\social_login.html:13
+msgid "깃허브로 로그인"
+msgstr "Log in with Github"
+
+#: .\templates\partials\social_login.html:19
+msgid "또는"
+msgstr "or"
+
+#: .\templates\reservations\reservation_detail.html:84
+msgid "정확성"
+msgstr "Accuracy"
+
+#: .\templates\reservations\reservation_detail.html:91
+msgid "의사소통"
+msgstr "Communication"
+
+#: .\templates\reservations\reservation_detail.html:99
+msgid "청결도"
+msgstr "Cleanliness"
+
+#: .\templates\reservations\reservation_detail.html:108
+msgid "위치"
+msgstr "Location"
+
+#: .\templates\reservations\reservation_detail.html:123
+msgid "가치"
+msgstr "Value"
+
+#: .\templates\reservations\reservation_list.html:13
+msgid "내 숙소 예약 관리"
+msgstr "Manage my room reservations"
+
+#: .\templates\reservations\reservation_list.html:60
+msgid "예약한 숙소"
+msgstr "Booked rooms"
+
+#: .\templates\reservations\reservation_list.html:101
+msgid "과거에 예약한 숙소"
+msgstr "Rooms booked in the past"
+
+#: .\templates\rooms\room_list.html:5 .\templates\rooms\room_list.html:21
+msgid "전 세계 숙소"
+msgstr "Places to stay around the world"
+
+#: .\templates\rooms\room_list.html:11
+msgid "지금 가장 인기 있는 숙소"
+msgstr "The most popular room now"
+
+#: .\templates\rooms\room_list.html:15
+msgid "아직 없습니다. 많이 이용해주세요."
+msgstr "Not yet. Please use it a lot."
+
+#: .\templates\rooms\room_search.html:285
+msgid "검색 결과"
+msgstr "Result"
+
+#: .\templates\users\login.html:22 .\users\forms.py:39 .\users\models.py:43
+msgid "이메일"
+msgstr "Email"
+
+#: .\templates\users\login.html:25 .\users\forms.py:46
+msgid "비밀번호"
+msgstr "Password"
+
+#: .\templates\users\login.html:36
+msgid "계정이 없으신가요"
+msgstr "Don’t have an account"
+
+#: .\templates\users\signup.html:28
+msgid "이미 계정이 있으신가요"
+msgstr "Already have an Booking account"
+
+#: .\templates\users\update-password.html:23
+msgid "현재 비밀번호"
+msgstr "Current Password"
+
+#: .\templates\users\update-password.html:31
+msgid "새 비밀번호"
+msgstr "New Password"
+
+#: .\templates\users\update-password.html:42
+msgid "새 비밀번호 확인"
+msgstr "New Password Confirm"
+
+#: .\templates\users\update-password.html:46
+msgid "변경하기"
+msgstr "Change Password"
+
+#: .\templates\users\update-profile.html:24
+msgid "수정하기"
+msgstr "Update"
+
+#: .\templates\users\update-profile.html:30
+msgid "비밀번호 변경하기"
+msgstr "Change Password"
+
+#: .\templates\users\user_detail.html:12 .\users\models.py:48
+msgid "프로필 사진"
+msgstr "Profile Image"
+
+#: .\templates\users\user_detail.html:22 .\users\forms.py:36
+msgid "이름"
+msgstr "Name"
+
+#: .\templates\users\user_detail.html:29
+msgid "소개"
+msgstr "Bio"
+
+#: .\templates\users\user_detail.html:37
+msgid "숙소 예약 관리"
+msgstr "Manage rooms reservations"
+
+#: .\templates\users\user_detail.html:41
+msgid "프로필 수정"
+msgstr "Profile Update"
+
+#: .\templates\users\user_detail.html:49
+msgid "의 숙소"
+msgstr "'s rooms"
+
+#: .\users\forms.py:52
+msgid "비밀번호 확인"
+msgstr "Password Confirm"
+
+#: .\users\mixins.py:13 .\users\mixins.py:22
+msgid "잘못된 접근입니다."
+msgstr "This site can't be reached"
+
+#: .\users\models.py:22
+msgid "남자"
+msgstr "Male"
+
+#: .\users\models.py:23
+msgid "여자"
+msgstr "Female"
+
+#: .\users\models.py:24
+msgid "그 외"
+msgstr "Other"
+
+#: .\users\models.py:44
+msgid "깃허브"
+msgstr "Github"
+
+#: .\users\models.py:45
+msgid "카카오"
+msgstr "Kakao"
+
+#: .\users\models.py:46
+msgid "네이버"
+msgstr "Naver"
+
+#: .\users\models.py:50
+msgid "성별"
+msgstr "Gender"
+
+#: .\users\models.py:52
+msgid "자기소개"
+msgstr "Bio"
+
+#: .\users\models.py:53
+msgid "생일"
+msgstr "Birthdate"
+
+#: .\users\models.py:55
+msgid "언어"
+msgstr "Language"
+
+#: .\users\models.py:62
+msgid "통화"
+msgstr "Currency"
+
+#: .\users\models.py:69
+msgid "이메일 인증"
+msgstr "Email Verified"
+
+#: .\users\models.py:70
+msgid "보안 코드"
+msgstr "Email Secret"
+
+#: .\users\models.py:72
+msgid "로그인 방법"
+msgstr "Login Method"
+
+#: .\users\models.py:88
+msgid "계정 인증"
+msgstr "Verify Booking Account"
+
+#: .\users\views.py:29 .\users\views.py:58 .\users\views.py:132
+#: .\users\views.py:200 .\users\views.py:261
+msgid "로그인에 성공하였습니다."
+msgstr "Log in Success."
+
+#: .\users\views.py:41
+msgid "성공적으로 로그아웃 되었습니다."
+msgstr "Log out Success."
+
+#: .\users\views.py:322
+msgid "프로필이 업데이트 되었습니다."
+msgstr "Profile updated."
+
+#: .\users\views.py:362
+msgid "비밀번호가 변경되었습니다."
+msgstr "Password Updated."
+
+#, fuzzy
+#~| msgid "숙소 유형"
+#~ msgid "모든 숙소 유형"
+#~ msgstr "Room Type"

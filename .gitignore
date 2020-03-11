@@ -129,5 +129,7 @@ dmypy.json
 .pyre/
 
 # Mac
-
 .DS_Store
+uploads/
+node_modules/
+.prettierignore

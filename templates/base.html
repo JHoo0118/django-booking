@@ -1,0 +1,72 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block page_title %}{% endblock page_title %}| Booking</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body class="text-gray-800 mt-24 font-light">
+    {% include "partials/messages.html" %}
+    
+    <header
+      class="container max-w-full inset-0 flex items-center justify-between px-4 h-20 border-b border-gray-400 fixed bg-white z-10 "
+    >
+      <div class="flex items-center w-1/3">
+        <a href="{% url 'core:home' %}" class="mr-4">
+          <img class="w-10" src="{% static 'img/logo.png' %}" />
+        </a>
+        {% block search-bar %}
+        <form method="get" action="{% url 'rooms:search' %}" class="w-9/12">
+          <input
+            class="search-box border px-5 w-full font-medium text-gray-900 placeholder-gray-600 py-3 rounded-sm w-64 shadow-md hover:shadow-lg focus:outline-none"
+            name="city"
+            placeholder="{% trans '모든 위치 검색' %}"
+            autocomplete="off"
+          />
+          <input type="hidden" name ="country" value="KR" />
+        </form>
+        {% endblock search-bar %}
+      </div>
+      {% include "partials/nav.html" %}
+    </header>
+
+    {% block content %}{% endblock content %} 
+    
+        <div class="container xl:max-w-5xl mx-auto py-8 font-medium text-gray-600 border-t">
+      &copy; Booking, Inc. All rights reserved. <div class="inline invisible xl:visible lg:visible md:visible"><span><a class="hover:underline" href="{% url 'core:home' %}">{% trans '이용약관' %}</a> · <a class="hover:underline" href="{% url 'core:home' %}">{% trans '개인정보 처리방침' %}</a> · <a class="hover:underline" href="{% url 'core:home' %}">{% trans '여행지 찾기' %}</a></span></div>
+    </div>
+
+    <script>
+      const langSelect = document.getElementById("js-lang")
+      const handleLangChange = () => {
+        const selected = langSelect.value;
+        fetch(`{% url 'users:switch-language' %}?lang=${selected}`).then(() => window.location.reload());
+      }
+      langSelect.addEventListener("change", handleLangChange)
+
+      const navSlide = () => {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav_link')
+
+        burger.addEventListener('click', () => {
+          nav.classList.toggle('nav-active');
+
+          navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+              link.style.animation = '';
+            } else {
+              link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`
+            }
+          });
+          burger.classList.toggle('toggle')
+        });
+      }
+      navSlide()
+    </script>
+  </body>
+</html>

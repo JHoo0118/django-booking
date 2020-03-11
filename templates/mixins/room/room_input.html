@@ -1,0 +1,16 @@
+<span class="font-semibold">{{field.label}}</span>
+<div class="input-box w-full {% if field == form.instant_book %}border-0 flex justify-start{% endif %} {% if field.errors %}has_error{% endif %}">
+    {% if field != form.instant_book %}
+        {{field}}
+    {% else %}
+    <input class="input-check" type="checkbox" name="instant_book" id="id_instant_book">
+    <label for="id_instant_book">
+        <span class="flex justify-center w-full h-full text-white"><svg class="items-center w-4 h-4" aria-hidden="true" role="presentation" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="fill: none; stroke: currentcolor; margin: 2px 0px 2px 3px; stroke-width: 4; overflow: visible;"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg></span>
+    </label>
+    {% endif%}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span class="text-red-700 font-medium text-sm">{{error}}</span> 
+        {% endfor %}
+    {% endif %}
+</div> 

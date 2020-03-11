@@ -1,0 +1,35 @@
+{% load i18n %}
+<ul class="nav-links flex text-sm font-medium h-full" id="js-myTopnav">
+  <li class="nav_link xl:h-full lg:h-full">
+    <div class="inline">
+      {% get_current_language as LANGUAGE_CODE %}
+      <select class="cursor-pointer text-sm select-hide" id="js-lang">
+        <option value="kr"
+        {% if LANGUAGE_CODE == 'kr' %}
+          selected
+        {% endif %}>{% trans '한국어' %} </option>
+        <option value="en"
+        {% if LANGUAGE_CODE == 'en' %}
+          selected
+        {% endif %}>{% trans '영어' %}</option>
+      </select>
+    </a>
+  </li>
+  {% if user.is_authenticated %}
+    <li class="nav_link xl:h-full lg:h-full"><a href="{% url 'rooms:create' %}">{% trans '숙소 등록' %}</a></li>
+    <li class="nav_link xl:h-full lg:h-full"><a href="{{user.get_absolute_url}}">{% trans '프로필' %}</a></li>
+    <li class="nav_link xl:h-full lg:h-full"><a href="{% url 'users:logout' %}">{% trans '로그아웃' %}</a></li>
+  {% else %}
+    <li class="nav_link xl:h-full lg:h-full"><a href="{% url 'users:login' %}">{% trans '로그인' %}</a></li>
+    <li class="nav_link xl:h-full lg:h-full"><a href="{% url 'users:signup' %}">{% trans '회원가입' %}</a></li>
+  {% endif %}
+</ul>
+<div class="burger">
+  <div class="line1"></div>
+  <div class="line2"></div>
+  <div class="line3"></div>
+</div>
+<script>
+  
+</script>
+
