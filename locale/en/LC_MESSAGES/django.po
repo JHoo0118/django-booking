@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 03:37+0900\n"
+"POT-Creation-Date: 2020-03-12 04:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,8 +68,8 @@ msgstr "Instant book"
 
 #: .\rooms\forms.py:26 .\templates\mixins\room_card.html:11
 #: .\templates\reservations\reservation_list.html:38
-#: .\templates\reservations\reservation_list.html:80
-#: .\templates\reservations\reservation_list.html:116 .\users\models.py:68
+#: .\templates\reservations\reservation_list.html:90
+#: .\templates\reservations\reservation_list.html:135 .\users\models.py:68
 msgid "슈퍼호스트"
 msgstr "SUPERHOST"
 
@@ -316,11 +316,17 @@ msgstr "Value"
 msgid "내 숙소 예약 관리"
 msgstr "Manage my room reservations"
 
-#: .\templates\reservations\reservation_list.html:60
+#: .\templates\reservations\reservation_list.html:18
+#: .\templates\reservations\reservation_list.html:66
+#: .\templates\reservations\reservation_list.html:119
+msgid "아직 없습니다."
+msgstr "Not yet."
+
+#: .\templates\reservations\reservation_list.html:62
 msgid "예약한 숙소"
 msgstr "Booked rooms"
 
-#: .\templates\reservations\reservation_list.html:101
+#: .\templates\reservations\reservation_list.html:115
 msgid "과거에 예약한 숙소"
 msgstr "Rooms booked in the past"
 

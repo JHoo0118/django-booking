@@ -15,7 +15,7 @@
             <div class="grid grid-cols-12 gap-5">
                 
                 {% if guset_reservations == "-1" %}
-                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                    <span class="col-span-12 block w-full mb-25vh">{% trans "아직 없습니다." %}</span>
                 {% else %}
                     {% for reservation in guset_reservations %}
                         {% if reservation.is_finished %}
@@ -63,7 +63,7 @@
             <div class="grid grid-cols-12 gap-5">
 
                 {% if get_reservation_false %}
-                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                    <span class="col-span-12 block w-full mb-25vh">{% trans "아직 없습니다." %}</span>
                 
                 {% else %}
                     
@@ -116,7 +116,7 @@
             <div class="grid grid-cols-12 gap-5">
 
                 {% if get_reservation_false or get_in_progress %}
-                    <span class="col-span-12 block w-full mb-25vh">아직 없습니다.</span>
+                    <span class="col-span-12 block w-full mb-25vh">{% trans "아직 없습니다." %}</span>
                 {% else %}
 
                 {% for reservation in user.reservations.all %}
