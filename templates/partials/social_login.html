@@ -1,7 +1,7 @@
 {% load static i18n %}
 <div class="flex flex-col w-full">
   <a href="{% url 'users:naver-login' %}" class="btn border text-white mb-2 border-green-400 bg-naver">
-    <img class="w-6 inline" src="{% static 'img/naver.png' %}" >&nbsp
+    <img class="w-6 inline" src="{% static 'img/naver_icon.png' %}" >&nbsp
     {% trans '네이버로 로그인' %}
   </a>
   <a href="{% url 'users:kakao-login' %}" class="btn border text-yellow-800 mb-2 border-yellow-400 bg-yellow-400 ">
