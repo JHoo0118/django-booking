@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["django-booking.eba-a3mcndmb.ap-northeast-2.elasticbeanstalk.com/"]
+ALLOWED_HOSTS = "*"
 
 
 # Application definition
