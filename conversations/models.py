@@ -44,7 +44,12 @@ class Conversation(core_models.TimeStampedModel):
     def get_reverse_second_message_date(self):
         try:
             count_message = self.messages.count()
-            (message,) = self.messages.all()[count_message - 2 : count_message - 1]
+            start = count_message - 2
+            end = count_message - 1
+            if start <= 0:
+                start = 0
+                end = 1
+            (message,) = self.messages.all()[start:end]
             return message.created
         except ValueError:
             return None
@@ -52,7 +57,12 @@ class Conversation(core_models.TimeStampedModel):
     def check_day_changed(self):
         try:
             count_message = self.messages.count()
-            (message1,) = self.messages.all()[count_message - 2 : count_message - 1]
+            start = count_message - 2
+            end = count_message - 1
+            if start <= 0:
+                start = 0
+                end = 1
+            (message1,) = self.messages.all()[start:end]
             message2 = self.messages.all().last()
             if message2.created.day - message1.created.day >= 1:
                 return True

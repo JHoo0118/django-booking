@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n get_guest_reservation get_reservation_false get_in_progress %}
+{% load i18n get_guest_reservation get_reservation_false get_in_progress get_reservation_len %}
 {% block page_title %}
     {{user.first_name}}의 예약한 숙소
 {% endblock page_title %}
@@ -57,12 +57,12 @@
             </div>
 
             
-            {% get_reservation_false user.reservations.all as get_reservation_false %}
+            {% get_reservation_false user.reservations.all as get_reservation_false_bool %}
 
             <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "예약한 숙소" %}</h3>
             <div class="grid grid-cols-12 gap-5">
 
-                {% if get_reservation_false %}
+                {% if get_reservation_false_bool %}
                     <span class="col-span-12 block w-full mb-25vh">{% trans "아직 없습니다." %}</span>
                 
                 {% else %}
@@ -110,12 +110,13 @@
             
             
             
-            {% get_in_progress user.reservations.all as get_in_progress %}
+            {% get_reservation_len user.reservations.all as get_reservation_len_bool %}
+            {% get_in_progress user.reservations.all as get_in_progress_bool %}
 
             <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "과거에 예약한 숙소" %}</h3>
             <div class="grid grid-cols-12 gap-5">
 
-                {% if get_reservation_false or get_in_progress %}
+                {% if get_reservation_len_bool or get_in_progress_bool %}
                     <span class="col-span-12 block w-full mb-25vh">{% trans "아직 없습니다." %}</span>
                 {% else %}
 
