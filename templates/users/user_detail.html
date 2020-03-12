@@ -30,13 +30,14 @@
             <div class="col-span-4 row-span-3 pl-2 flex items-center">{{user_obj.bio}}</div>
         </div>
         <div class="flex py-20 justify-center">
+            {% if user == user_obj %}
             <div class="w-64 mx-auto py-5 flex justify-end">
                 <div class="flex flex-col justify-center items-center"><a href="{% url 'lists:see-favs' %}" class="icon-ani"><i class="fa fa-heart text-red-600 fa-2x mb-5 icon-ani hover:text-red-700"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "마음에 든 숙소" %}</span></div>
             </div>
             <div class="w-64 mx-auto py-5 flex justify-center">
                 <div class="flex flex-col justify-center items-center"><a href="{% url 'reservations:see-reservation' %}" class="icon-ani"><i class="fa fa-book text-naver fa-2x mb-5 icon-ani hover:text-green-600"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "숙소 예약 관리" %}</span></div>
             </div>
-            {% if user == user_obj %}
+            
             <div class="w-64 mx-auto py-5 flex justify-start">
                 <div class="flex flex-col justify-center items-center"><a href="{% url 'users:update' %}" class="icon-ani"><i class="fa fa-user-edit text-gray-800 fa-2x mb-5 icon-ani hover:text-black"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "프로필 수정" %}</span></div>
             </div>
