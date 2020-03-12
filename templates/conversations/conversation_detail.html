@@ -9,7 +9,7 @@
 {% endblock search-bar %}
 
 {% block content %}
-    {% check_day_change conversation.get_reverse_second_message_date|date:'Y n j' as check_day_change_bool %}
+    
     <div class="min-h-75vh mx-5 xl:mx-0 lg:mx-0 md:mx-5 sm:mx-5">
         <div class="container mx-auto my-10 mt-32 min-h-50vh flex flex-col xl:flex-row lg:flex-row md:flex-col sm:flex-col">
             <div class="border p-10 col-span-4 w-full xl:w-1/4 lg:w-2/5 md:w-full sm:w-full">
@@ -48,7 +48,7 @@
                                 text-right
                             {% endif %}">
                             
-                                <span class="text-sm font-medium text-gray-600">
+                                <span class="text-xs xl:text-sm lg:text-xs md:text-xs sm:text-xs font-medium text-gray-600">
                                     {% if message.user.pk == user.pk %}
                                     {% else %}
                                         {{message.user.first_name}}
@@ -57,9 +57,9 @@
                                 <div class="flex items-end">
                                     
                                     {% if message.user.pk == user.pk %}
-                                        <span class="text-sm text-gray-600 mr-2">{{message.created|date:'A g시 i분'}}</span>
+                                        <span class="text-xs xl:text-sm lg:text-xs md:text-xs sm:text-xs text-gray-600 mr-2">{{message.created|date:'A g시 i분'}}</span>
                                     {% endif %}
-                                    <div class="mt-px p-5 w-56 rounded
+                                    <div class="mt-px p-5 w-40 xl:w-56 lg:w-48 md:w-56 sm:w-56 rounded
                                         {% if message.user.pk != user.pk %}
                                             bg-white
                                             text-black
@@ -67,18 +67,19 @@
                                             bg-yellow-300
                                         {% endif %}
                                     ">
-                                        {{message.message}}
+                                        <span class="text-xs xl:text-sm lg:text-xs md:text-xs sm:text-xs">{{message.message}}</span>
                                     </div>
                                     
                                     {% if message.user.pk != user.pk %}
-                                        <span class="ml-2 text-sm text-gray-600">{{message.created|date:'A g시 i분'}}</span>
+                                        <span class="ml-2 text-xs xl:text-sm lg:text-xs md:text-xs sm:text-xs text-gray-600">{{message.created|date:'A g시 i분'}}</span>
                                     {% endif %}
                                 </div>
                             </div>
+                            {% check_day_change conversation.get_reverse_second_message_date|date:'Y n j' as check_day_change_bool %}
                             {% if conversation.messages.count >= 2 and check_day_change_bool and forloop.first %}
                                 <div class="flex items-center w-full my-5">
                                     <div class="h-px w-full bg-gray-400"></div>
-                                    <span class="text-gray-600 font-medium w-80 text-sm text-center">{{conversation.get_last_message_date|date:'Y년 n월 j일'}}</span>
+                                    <span class="text-gray-600 font-medium w-80 text-xs xl:text-sm lg:text-xs md:text-xs sm:text-xs text-center">{{conversation.get_last_message_date|date:'Y년 n월 j일'}}</span>
                                     <div class="h-px w-full bg-gray-400"></div>
                                 </div>
                             {% endif %}

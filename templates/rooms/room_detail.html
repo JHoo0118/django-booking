@@ -6,6 +6,18 @@
 {% endblock page_title %}
 
 {% block content %}
+    <div class="absolute heart-location">
+        {% on_favs room as on_favs_boolean %}
+        {% if on_favs_boolean %}
+        <a href="{% url 'lists:toggle-room' room.pk %}?action=remove">
+            <i class="fas fa-heart fa-2x text-red-600"></i>
+        </a>
+        {% else %}
+        <a href="{% url 'lists:toggle-room' room.pk %}?action=add">
+            <i class="far fa-heart fa-2x text-red-600"></i>
+        </a>
+        {% endif %}
+    </div>
     <div class="-mt-5 container max-w-full h-75vh xl:h-75vh lg:h-75vh md:h-50vh sm:h-40vh flex mb-20">
         <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 w-full">
             <div class="h-full col-span-1 zoom-container">
@@ -127,18 +139,7 @@
             {% if room.host == user %}
                 <a href="{% url 'rooms:edit' room.pk %}" class="btn-link block">숙소 수정하기</a>
             {% else %}
-                <div class="flex justify-end">
-                    {% on_favs room as on_favs_boolean %}
-                    {% if on_favs_boolean %}
-                    <a href="{% url 'lists:toggle-room' room.pk %}?action=remove">
-                        <i class="fas fa-heart fa-2x text-red-600"></i>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'lists:toggle-room' room.pk %}?action=add">
-                        <i class="far fa-heart fa-2x text-red-600"></i>
-                    </a>
-                    {% endif %}
-                </div>
+                
                 {% for calendar in room.get_calendars %}
                 <div class="mb-20">
                     <span class="text-center font-semibold text-lg block mb-8">{{calendar.year}}년 {{calendar.get_month}}</span>

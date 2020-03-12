@@ -38,6 +38,12 @@
   margin: 5px;
 }
 
+.heart-location {
+  top: 10vh;
+  right: 3vh;
+  z-index: 20;
+}
+
 @media screen and (max-width: 768px) {
   .nav-links {
     @apply border-l shadow-xs;

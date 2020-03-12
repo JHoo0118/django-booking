@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
-  <body class="text-gray-800 mt-24 font-light">
+  <body class="text-gray-800 mt-24 font-light overflow-x-hidden">
     {% include "partials/messages.html" %}
     
     <header
@@ -36,7 +36,7 @@
 
     {% block content %}{% endblock content %} 
     
-        <div class="container xl:max-w-5xl mx-2 xl:mx-auto lg:mx-auto md:mx-auto sm:mx-auto py-8 font-medium text-gray-600 border-t ">
+        <div class="container xl:max-w-5xl sm:px-4 px-4 xl:px-0 lg:px-0 mx-auto py-8 font-medium text-gray-600 border-t ">
       &copy; Booking, Inc. All rights reserved. <div class="inline invisible xl:visible lg:visible md:visible"><span><a class="hover:underline" href="{% url 'core:home' %}">{% trans '이용약관' %}</a> · <a class="hover:underline" href="{% url 'core:home' %}">{% trans '개인정보 처리방침' %}</a> · <a class="hover:underline" href="{% url 'core:home' %}">{% trans '여행지 찾기' %}</a></span></div>
     </div>
 
