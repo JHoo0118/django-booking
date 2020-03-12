@@ -1,5 +1,3 @@
-from django.utils.translation import ugettext_lazy as _
-
 """
 Django settings for config project.
 
@@ -13,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET")
+SECRET_KEY = os.environ.get("DJANGO_SECRET", "fWp4nT^qR#Dw3qc3DxbVuHzW69m9!mc")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG"))
 
 ALLOWED_HOSTS = [".elasticbeanstalk.com", "localhost"]
 
@@ -90,7 +91,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-if DEBUG is True:
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -99,13 +107,6 @@ if DEBUG is True:
             "USER": os.environ.get("RDS_USER"),
             "PASSWORD": os.environ.get("RDS_PASSWORD"),
             "PORT": "5432",
-        }
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 
