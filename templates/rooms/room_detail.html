@@ -6,16 +6,20 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div class="absolute heart-location">
+    <div class="absolute heart-location" style="z-index: 5;">
         {% on_favs room as on_favs_boolean %}
         {% if on_favs_boolean %}
-        <a href="{% url 'lists:toggle-room' room.pk %}?action=remove">
-            <i class="fas fa-heart fa-2x text-red-600"></i>
-        </a>
+            {% if user != room.host %}
+                <a href="{% url 'lists:toggle-room' room.pk %}?action=remove">
+                    <i class="fas fa-heart fa-2x text-red-600"></i>
+                </a>
+            {% endif %}
         {% else %}
-        <a href="{% url 'lists:toggle-room' room.pk %}?action=add">
-            <i class="far fa-heart fa-2x text-red-600"></i>
-        </a>
+            {% if user != room.host %}
+                <a href="{% url 'lists:toggle-room' room.pk %}?action=add">
+                    <i class="far fa-heart fa-2x text-red-600"></i>
+                </a>
+            {% endif %}
         {% endif %}
     </div>
     <div class="-mt-5 container max-w-full h-75vh xl:h-75vh lg:h-75vh md:h-50vh sm:h-40vh flex mb-20">
