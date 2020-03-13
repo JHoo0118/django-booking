@@ -15,7 +15,7 @@
         {% csrf_token %}
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
-                <span class="text-red-700 font-semibold text-sm">{{error}}</span> 
+                <span class="text-red-700 font-semibold text-sm block">{{error}}</span> 
             {% endfor %}
         {% endif %}
         {% for field in form %}

@@ -15,7 +15,7 @@
         {% csrf_token %}
           {% if form.non_field_errors %}
               {% for error in form.non_field_errors %}
-                  <span class="text-red-700 font-semibold text-sm">{{error}}</span> 
+                  <span class="text-red-700 font-semibold text-sm block">{{error}}</span> 
               {% endfor %}
           {% endif %}
           <div class="input-box {% if field.errors%}has_error{% endif %}">
@@ -26,7 +26,7 @@
           </div>
           {% if field.errors and field != form.password1 %}
               {% for error in field.errors %}
-                  <span class="text-red-700 font-semibold text-sm">{{error}}</span> 
+                  <span class="text-red-700 font-semibold text-sm block">{{error}}</span> 
               {% endfor %}
           {% endif %}
           <button class="btn bg-indigo-600 text-white font-semibold {% if form.currency %}mt-3{% endif %}">{% trans "로그인" %}</button>

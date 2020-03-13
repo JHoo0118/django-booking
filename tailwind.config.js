@@ -30,7 +30,10 @@ module.exports = {
       minHeight: {
         "50vh": "50vh",
         "60vh": "60vh",
-        "75vh": "75vh"
+        "75vh": "75vh",
+        "80vh": "80vh",
+        "85vh": "85vh",
+        "90vh": "90vh"
       },
       colors: {
         naver: "#03BB63"

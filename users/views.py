@@ -56,7 +56,7 @@ class SignUpView(mixins.LoggedOutOnlyView, FormView):
         if user is not None:
             login(self.request, user)
             messages.success(self.request, _("로그인에 성공하였습니다."))
-        user.verify_email()
+        # user.verify_email()
         return super().form_valid(form)
 
 

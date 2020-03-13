@@ -8,9 +8,9 @@
 
     <div class="container xl:w-3/5 lg:w-2/3 md:w-3/4 mx-auto my-10 flex flex-col p-6 min-h-75vh">
         <h3 class="font-semibold text-lg border-b border-black mb-10 pb-6">{% trans "프로필" %}</h3>
-        <div class="grid grid-cols-5 grid-row-7 border-t border-b border-gray-400 h-35vh w-full">
-            <div class="col-span-1 row-span-3 pl-2 text-gray-600 bg-gray-100 border-b border-r border-gray-400 flex items-center font-semibold">{% trans "프로필 사진" %}</div>
-            <div class="col-span-4 row-span-3 pl-2 text-gray-800 text-sm border-b border-gray-400 flex items-center">
+        <div class="grid grid-cols-5 border-t border-b border-gray-400 min-h-50vh w-full">
+            <div class="col-span-1 pl-2 text-gray-600 bg-gray-100 border-b border-r border-gray-400 flex items-center font-semibold">{% trans "프로필 사진" %}</div>
+            <div class="col-span-4 pl-2 text-gray-800 text-sm border-b border-gray-400 flex items-center">
                 {% if user_obj.avatar %}
                     <div class="h-24 w-24 xl:h-32 xl:w-32 lg:h-32 lg:w-32 md: h-24 md:w-24 sm:w-24 sm:h-24" ><img src="{{user_obj.avatar.url}}" class="h-24 w-24 xl:h-32 xl:w-32 lg:h-32 lg:w-32 md: h-24 md:w-24 sm:w-24 sm:h-24 bg-cover rounded-full" /></div>
                 {% else %}
@@ -19,17 +19,17 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col-span-1 row-span-1 pl-2 text-gray-600 bg-gray-100 border-gray-400 border-b border-r flex items-center font-semibold">{% trans "이름" %}</div>
-            <div class="col-span-4 row-span-1 pl-2 text-gray-800 border-b text-sm flex border-gray-400 items-center">
+            <div class="col-span-1 pl-2 text-gray-600 bg-gray-100 border-gray-400 border-b border-r flex items-center font-semibold">{% trans "이름" %}</div>
+            <div class="col-span-4 pl-2 text-gray-800 border-b text-sm flex border-gray-400 items-center">
                 {{user_obj.first_name}}
                 {% if user_obj.superhost %}
                     <i class="fas fa-star text-red-500 ml-1"></i>
                 {% endif %}
             </div>
-            <div class="col-span-1 row-span-3 pl-2 text-gray-600 bg-gray-100 border-r border-gray-400 flex items-center font-semibold">{% trans "소개" %}</div>
-            <div class="col-span-4 row-span-3 pl-2 flex items-center">{{user_obj.bio}}</div>
+            <div class="col-span-1 pl-2 text-gray-600 bg-gray-100 border-r border-gray-400 flex items-center font-semibold">{% trans "소개" %}</div>
+            <div class="col-span-4 pl-2 flex items-center">{{user_obj.bio}}</div>
         </div>
-        <div class="flex py-20 justify-center">
+        <div class="flex pt-10 pb-0 justify-center">
             {% if user == user_obj %}
             <div class="w-64 mx-auto py-5 flex justify-end">
                 <div class="flex flex-col justify-center items-center"><a href="{% url 'lists:see-favs' %}" class="icon-ani"><i class="fa fa-heart text-red-600 fa-2x mb-5 icon-ani hover:text-red-700"></i></a><span class="font-semibold text-sm text-gray-700">{% trans "마음에 든 숙소" %}</span></div>

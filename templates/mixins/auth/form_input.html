@@ -30,6 +30,6 @@
 </div>
 {% if field.errors and field != form.password1 %}
     {% for error in field.errors %}
-        <span class="text-red-700 font-semibold text-sm">{{error}}</span> 
+        <span class="text-red-700 font-semibold text-sm block">{{error}}</span> 
     {% endfor %}
 {% endif %}
